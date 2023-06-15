@@ -5,18 +5,34 @@ function TextForm(props) {
     const [text, setText] = useState("")
 
     const handleUpclick = () => {
-        const newValue = text.toUpperCase();
-        setText(newValue);
+        if (text.length > 0) {
+            const newValue = text.toUpperCase();
+            setText(newValue);
+            props.alert("Converted to UpperCase", "success")
+        } else {
+            window.confirm("Enter Something in Text Box !!!")
+        }
+
     }
 
     const handleLoclick = () => {
-        const newValue = text.toLowerCase();
-        setText(newValue);
+        if (text.length > 0) {
+            const newValue = text.toLowerCase();
+            setText(newValue);
+            props.alert("Converted to LowerCase", "success")
+        } else {
+            window.confirm("Enter Something in Text Box !!!")
+        }
     }
 
     const handleClearclick = () => {
-        const newValue = "";
-        setText(newValue);
+        if (text.length > 0) {
+            const newValue = "";
+            setText(newValue);
+            props.alert("Cleared text", "success")
+        } else {
+            window.confirm("Already Cleared !!!")
+        }
     }
 
     const handleReverseclick = () => {
@@ -26,19 +42,34 @@ function TextForm(props) {
         // setText(newValue);
 
         //shorthand property to reverse a string
-        let newValue = text.split("").reverse().join("");
-        setText(newValue);
+        if (text.length > 0) {
+            let newValue = text.split("").reverse().join("");
+            setText(newValue);
+            props.alert("Text is Reversed", "success")
+        } else {
+            window.confirm("Enter Something in Text Box !!!")
+        }
     }
 
-    const handleCopy =()=>{
-        var text = document.getElementById("Textarea")
-        text.select();
-        navigator.clipboard.writeText(text.value);
+    const handleCopy = () => {
+        if (text.length > 0) {
+            var newtext = document.getElementById("Textarea")
+            newtext.select();
+            navigator.clipboard.writeText(newtext.value);
+            props.alert("Copied to Clipboard", "success")
+        } else {
+            window.confirm("Enter Something in Text Box !!!")
+        }
     }
 
-    const handleRemoveSp =()=>{
-        const newValue = text.split(/[ ]+/);
-        setText(newValue.join(" "))
+    const handleRemoveSp = () => {
+        if (text.length > 0) {
+            const newValue = text.split(/[ ]+/);
+            setText(newValue.join(" "));
+            props.alert("Extra Spaces Removed", "success");
+        } else {
+            window.confirm("Enter Something in Text Box !!!")
+        }
     }
 
     const handleOnchange = (event) => {
@@ -47,11 +78,11 @@ function TextForm(props) {
 
     return (
         <>
-            <div className="container my-3" style={{color: props.mode==='dark'?'white':'black'}}>
+            <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h1>{props.heading}</h1>
                 <div className="my-3">
-                    <textarea className="form-control" onChange={handleOnchange} id="Textarea" value={text} rows="8" 
-                    style={{color: props.mode==='dark'?'white':'black', background:props.mode==='dark'?'#042743':'white' }}></textarea>
+                    <textarea className="form-control" onChange={handleOnchange} id="Textarea" value={text} rows="8"
+                        style={{ color: props.mode === 'dark' ? 'white' : 'black', background: props.mode === 'dark' ? '#042743' : 'white' }}></textarea>
                 </div>
                 <button className="btn btn-primary mx-1" onClick={handleUpclick}>Convert to Uppercase</button>
                 <button className="btn btn-primary mx-1" onClick={handleLoclick}>Convert to Lowercase</button>
@@ -64,12 +95,12 @@ function TextForm(props) {
 
             </div>
 
-            <div className="container my-4" style={{color: props.mode==='dark'?'white':'black'}}>
+            <div className="container my-4" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h2>Your Text Summary</h2>
                 <p>{text.split(" ").length} words and {text.length} character</p>
 
                 <h2>Preview</h2>
-                <p>{text.length>0?text:"Enter a text above to preview it.........."}</p>
+                <p>{text.length > 0 ? text : "Enter a text above to preview it.........."}</p>
             </div>
         </>
     );
