@@ -22,8 +22,6 @@ function App() {
 
   }
 
-  
-
   const toggleBtn=() =>{
     if(mode ==='light'){
     setMode('dark');
@@ -52,4 +50,3 @@ function App() {
 }
 
 export default App;
-
