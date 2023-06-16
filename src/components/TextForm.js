@@ -12,7 +12,6 @@ function TextForm(props) {
         } else {
             window.confirm("Enter Something in Text Box !!!")
         }
-
     }
 
     const handleLoclick = () => {
@@ -90,8 +89,6 @@ function TextForm(props) {
                 <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
                 <button className="btn btn-primary mx-1" onClick={handleRemoveSp}>Remove Extra Space</button>
                 <button className="btn btn-primary mx-1" onClick={handleClearclick}>Clear</button>
-
-
 
             </div>
 
